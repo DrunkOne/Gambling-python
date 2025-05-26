@@ -1,17 +1,9 @@
 import random, economy
 
-p1 = economy.player("daniel", 1, 300)
+def odd_or_even(p1):
+    gamble = economy.make_bet(p1) # Queries gamble amount (Check bal) Returns gamble amount
 
-def make_bet(p1):
-    while True:
-        gamble = input("Make a bet: ")
-        if economy.player.check_balance(p1, gamble):
-            break
-    return gamble
-
-def odd_or_even(p1, gamble):
-    a = "odd"
-    b = "even"
+    # Queries Input for Odd or Even
     while True:
         err = f"Incorrect Input"
         pick = input("Pick Odd or Even: ")
@@ -26,6 +18,7 @@ def odd_or_even(p1, gamble):
             print(err)
             continue
     
+    # Get random number
     x = random.randrange(1, 10)
     if x % 2 == 0 :
         print(f"{x} is EVEN!")
@@ -34,14 +27,17 @@ def odd_or_even(p1, gamble):
         print(f"{x} is ODD!")
         b = "odd"
     
+    # Win / Lose conditions
     if a != b:
-        print("You lost!")
-        economy.player.min_money(p1, gamble)
+        result = False
     else:
-        print("You win!")
-        economy.player.add_money(p1, gamble)
+        result = True
 
-odd_or_even(make_bet(p1))
-    
+    #economy player module
+    economy.win_lose(p1, result, gamble)
 
+# Debugging
+p1 = economy.player("daniel", 1, 300)
+while True:
+    odd_or_even(p1)
 

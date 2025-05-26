@@ -8,7 +8,7 @@ class player:
     def min_money(self, amount):
         self.money -= amount
     def check_balance(self, amount):
-        if amount > self.money:
+        if amount > self.money or self.money <= 0:
             print(f"You don't have enough to play!")
             print(f"Final balance: ${self.money}")
             return False
@@ -33,10 +33,27 @@ def check_account(p1):
 
 def make_bet(p1):
     while True:
-        gamble = input("Make a bet: ")
-        if player.check_balance(p1, gamble):
-            break
+        try:
+            gamble = int(input("Make a bet: "))
+            if gamble <= 0:
+                print("Nice try dipshit")
+                continue
+            elif p1.check_balance(gamble):
+                break
+        except ValueError:
+            print("Please enter a valid number.")
     return gamble
 
-p1 = ("daniel", 1, 300)
-make_bet(p1)
+def win_lose(p1, result, gamble):
+    if result == False:
+        print(f"You lost! -{gamble}")
+        p1.min_money(gamble)
+    else:
+        print(f"You win! +{gamble}")
+        p1.add_money(gamble)
+    print(f"Remaining balance: {p1.money}")
+
+# Debugging
+#p1 = player("daniel", 1, 300)
+#win_lose(p1, False, 200)
+#win_lose(p1, True, 100)

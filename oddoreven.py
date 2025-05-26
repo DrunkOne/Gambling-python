@@ -37,7 +37,6 @@ def odd_or_even(p1):
     economy.win_lose(p1, result, gamble)
 
 # Debugging
-p1 = economy.player("daniel", 1, 300)
-while True:
-    odd_or_even(p1)
-
+#p1 = economy.player("daniel", 1, 300)
+#while True:
+#    odd_or_even(p1)

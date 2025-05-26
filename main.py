@@ -1,6 +1,21 @@
-import economy, menu
+import economy, menu, oddoreven 
 
-p1 = economy.player("daniel", 1, 300)
+# Selection Screen
+def gamble():
+    print("Selected gamble")
+    print("Launching Odd or Even...")
+    while True:
+        oddoreven.odd_or_even(p1)
+        cont = int(input("[1] Continue? or [2] Quit? "))
+        if cont == 2:
+            break
+
+def checkbal():
+    print("Selected check balance")
+    economy.check_account(p1)
+
+def quit():
+    pass
 
 #User Input
 def select():
@@ -14,20 +29,11 @@ def select():
                 checkbal()
                 continue
             case 3:
-                print("Nah man no quiting")
-                continue
+                print("Fak U")
+                break
 
-# Selection Screen
-def gamble():
-    print("Selected gamble")
-
-def checkbal():
-    print("Selected check balance")
-    economy.check_account(p1)
-
-def quit():
-    pass
-
+# activate
+p1 = economy.player("daniel", 1, 300)
 menu.welcome()
 select()
 
